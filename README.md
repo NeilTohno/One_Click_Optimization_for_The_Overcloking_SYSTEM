@@ -3,3 +3,5 @@
 这个脚本就是为了超频的一键优化脚本，包含部分优化而已。
 
 This script was written by neil78@bilibili ;  禁止全文复制粘贴 (Prohibit copying and pasting of the full text)
+
+建议用 Visual Studio Code 编辑，设置编码格式 GB2312。
