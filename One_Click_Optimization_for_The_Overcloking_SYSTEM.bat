@@ -52,16 +52,27 @@ echo 如不需要系统优化，请关掉本脚本程序； 按任意键将继�
 echo. & pause 
 
 echo =
-echo  07.  NTFS 优化
+echo 07.  CacheAwareScheduling
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v "CacheAwareScheduling" /t REG_DWORD /d "6" /f
+timeout /t 1 /nobreak
+
+echo =
+echo  08.  NTFS 优化
 echo Applying NTFS Tweaks
 fsutil behavior set memoryusage 2
 fsutil behavior set mftzone 4
 timeout /t 1 /nobreak
 
 echo =
-echo 08.  Setting System Responsiveness
+echo 09.  Setting System Responsiveness
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "9" /f 
 timeout /t 1 /nobreak
+
+echo =
+echo 10.  Set icon cache size to 4MB
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "MaxCachedIcons" /t REG_DWORD /d "4096" /f 
+timeout /t 1 /nobreak
+
 
 echo 已经完全执行脚本，感谢使用，再见。
 echo. & pause 
