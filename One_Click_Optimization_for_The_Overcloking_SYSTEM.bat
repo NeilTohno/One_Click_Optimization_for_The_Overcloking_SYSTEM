@@ -37,8 +37,8 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
 timeout /t 1 /nobreak
 
 echo =
-echo 05.  关闭 Large System Cache, 为程序优化性能2
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "0" /f 
+echo 05.  Large System Cache, 为程序优化性能2
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "1" /f 
 timeout /t 1 /nobreak
 
 echo =
@@ -61,6 +61,12 @@ timeout /t 1 /nobreak
 echo =
 echo 08.  Setting System Responsiveness
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "9" /f 
+timeout /t 1 /nobreak
+
+echo =
+echo 09.  Add WorkerThreads
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Executive" /v "AdditionalCriticalWorkerThreads" /t REG_DWORD /d "16" /f 
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Executive" /v "AdditionalDelayedWorkerThreads" /t REG_DWORD /d "16" /f 
 timeout /t 1 /nobreak
 
 echo 已经完全执行脚本，感谢使用，再见。
