@@ -37,8 +37,8 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
 timeout /t 1 /nobreak
 
 echo =
-echo 05.  关闭 Large System Cache, 为程序优化性能2
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "0" /f 
+echo 05.  Large System Cache, 为程序优化性能2
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "1" /f 
 timeout /t 1 /nobreak
 
 echo =
@@ -69,10 +69,15 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProf
 timeout /t 1 /nobreak
 
 echo =
-echo 10.  Set icon cache size to 4MB
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "MaxCachedIcons" /t REG_DWORD /d "4096" /f 
+echo 10.  Add WorkerThreads
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Executive" /v "AdditionalCriticalWorkerThreads" /t REG_DWORD /d "16" /f 
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Executive" /v "AdditionalDelayedWorkerThreads" /t REG_DWORD /d "16" /f 
 timeout /t 1 /nobreak
 
+echo =
+echo 11.  Set icon cache size to 8MB
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "MaxCachedIcons" /t REG_DWORD /d "8192" /f 
+timeout /t 1 /nobreak
 
 echo 已经完全执行脚本，感谢使用，再见。
 echo. & pause 
