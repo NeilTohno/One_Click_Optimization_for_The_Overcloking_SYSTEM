@@ -53,7 +53,7 @@ echo. & pause
 
 echo =
 echo 07.  CacheAwareScheduling
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v "CacheAwareScheduling" /t REG_DWORD /d "6" /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v "CacheAwareScheduling" /t REG_DWORD /d "5" /f
 timeout /t 1 /nobreak
 
 echo =
@@ -77,6 +77,11 @@ timeout /t 1 /nobreak
 echo =
 echo 11.  Set icon cache size to 8MB
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "MaxCachedIcons" /t REG_DWORD /d "8192" /f 
+timeout /t 1 /nobreak
+
+echo =
+echo 12
+powershell "Set-ProcessMitigation -System -Disable CFG, SEHOP"
 timeout /t 1 /nobreak
 
 echo 已经完全执行脚本，感谢使用，再见。
