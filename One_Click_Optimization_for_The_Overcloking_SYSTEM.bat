@@ -38,7 +38,7 @@ timeout /t 1 /nobreak
 
 echo =
 echo 05.  Large System Cache, 为程序优化性能2
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "1" /f 
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "0" /f 
 timeout /t 1 /nobreak
 
 echo =
@@ -52,35 +52,30 @@ echo 如不需要系统优化，请关掉本脚本程序； 按任意键将继�
 echo. & pause 
 
 echo =
-echo 07.  CacheAwareScheduling
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v "CacheAwareScheduling" /t REG_DWORD /d "5" /f
-timeout /t 1 /nobreak
-
-echo =
-echo  08.  NTFS 优化
+echo  07.  NTFS 优化
 echo Applying NTFS Tweaks
 fsutil behavior set memoryusage 2
 fsutil behavior set mftzone 4
 timeout /t 1 /nobreak
 
 echo =
-echo 09.  Setting System Responsiveness
-reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "9" /f 
+echo 08.  Setting System Responsiveness
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "7" /f 
 timeout /t 1 /nobreak
 
 echo =
-echo 10.  Add WorkerThreads
+echo 09.  Add WorkerThreads
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Executive" /v "AdditionalCriticalWorkerThreads" /t REG_DWORD /d "16" /f 
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Executive" /v "AdditionalDelayedWorkerThreads" /t REG_DWORD /d "16" /f 
 timeout /t 1 /nobreak
 
 echo =
-echo 11.  Set icon cache size to 8MB
+echo 10.  Set icon cache size to 8MB
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "MaxCachedIcons" /t REG_DWORD /d "8192" /f 
 timeout /t 1 /nobreak
 
 echo =
-echo 12
+echo 11
 powershell "Set-ProcessMitigation -System -Disable CFG, SEHOP"
 timeout /t 1 /nobreak
 
