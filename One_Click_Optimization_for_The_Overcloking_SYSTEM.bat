@@ -38,7 +38,7 @@ timeout /t 1 /nobreak
 
 echo =
 echo 05.  Large System Cache, 为程序优化性能2
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "1" /f 
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "0" /f 
 timeout /t 1 /nobreak
 
 echo =
