@@ -32,8 +32,8 @@ timeout /t 1 /nobreak
 
 echo =
 echo  04.  关掉 Exploit Protection 中的 SEHOPE 和 CFG
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v "KernelSEHOPEnabled" /t REG_DWORD /d 0 /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "EnableCfg" /t REG_DWORD /d 0 /f
+powershell -Command "Set-ProcessMitigation -System -Disable SEHOP"
+powershell -Command "Set-ProcessMitigation -System -Disable CFG"
 timeout /t 1 /nobreak
 
 echo =
@@ -72,11 +72,6 @@ timeout /t 1 /nobreak
 echo =
 echo 10.  Set icon cache size to 8MB
 reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "MaxCachedIcons" /t REG_DWORD /d "8192" /f 
-timeout /t 1 /nobreak
-
-echo =
-echo 11
-powershell "Set-ProcessMitigation -System -Disable CFG, SEHOP"
 timeout /t 1 /nobreak
 
 echo 已经完全执行脚本，感谢使用，再见。
